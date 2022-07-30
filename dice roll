@@ -1,0 +1,39 @@
+# So far what this code can do:
+# -Allows you to select what die type you need
+# -Asks how many you need to roll
+# -Rolls the amount requested
+# -Loops to ask what die type you need, unless you ask it to exit.
+# Things I want to learn:
+# -How can I make the outputs of the dice roll add itself. For example I need 2 10 sided dice to be rolled.
+# The output is 10 and 3. In what direction should I take the code to store that info and then output the sum
+# -How to add modifiers that can later be used to add to a roll. I definitely have an
+# understanding on this one. Set the variables for Strength/Dexterity/etc to be a user input
+# and then have it recalled later on if asked for such as an attack roll.
+
+import random
+while True:
+    dice_roll = input('Roll your dice: ')
+    number = int(dice_roll.find('d'))
+    number_of_die = dice_roll[0: number]
+    die_size = int(dice_roll[number + 1:])
+
+    pre_addition_roll = int(number_of_die) * int(random.randint(1, die_size))
+    # print(dice_roll[0: number])
+    # print(dice_roll[number+1:])
+    print(pre_addition_roll)
+
+    modifier = input('What modifier would you like to use? ')
+
+    if '+' in modifier:
+        print(pre_addition_roll + int(modifier[1:]))
+    elif '-' in modifier:
+        print(pre_addition_roll - int(modifier[1:]))
+    elif '*' in modifier:
+        print(pre_addition_roll * int(modifier[1:]))
+    elif '/' in modifier:
+        print(pre_addition_roll // int(modifier[1:]))
+    else:
+        print('No modifier used')
+    go = input('If you dont want to roll again say "end" ')
+    if go.lower() == 'end':
+        break
